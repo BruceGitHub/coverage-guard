@@ -1,0 +1,33 @@
+ConverageCheckerPath
+    - check(): bool
+        - Path
+
+
+CoverageLoad
+    -> SourceLoad 
+        <<implements>> SourceLoadInterface 
+                        - load
+                        - <<collection>>getMetaDataInformation(): MetadataInformationInterface
+                                                                - PathFile 
+                                                                - LineNumber
+                                                                - Coveraged
+                                                                - <<collection>> TypeConveragedInterface 
+                                                                                    - Name
+ CoveragedDiff 
+    - do(): DiffReportInterface
+                - get(): string
+        - SourceOne: MetadataInformationInterface                                                                                           
+        - SourceTwo: MetadataInformationInterface
+
+
+
+Application
+    - <<console parameter>> coverageOne
+    - <<console parameter>> coverageTwo
+        <<depends>>
+            -> ConverageCheckerPath
+            -> CoverageLoad
+            -> MetadataInformationInterface
+            -> CoveragedDiff
+            -> DiffReportInterface 
+            -> Symfony stuff
